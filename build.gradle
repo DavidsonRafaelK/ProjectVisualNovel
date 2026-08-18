@@ -1,12 +1,12 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven { url "https://maven.google.com" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        jcenter()
     }
     dependencies {
-        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
-        classpath 'com.android.tools.build:gradle:2.2.2'
+        // AGP 2.2.2 was only ever published to JCenter, which is permanently shut down;
+        // :android is excluded from settings.gradle until AGP/Gradle are modernized (issue #10).
     }
 }
 
@@ -27,6 +27,7 @@ allprojects {
 
     repositories {
         mavenCentral()
+        maven { url "https://maven.google.com" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
     }
@@ -46,42 +47,44 @@ project(":desktop") {
     }
 }
 
-project(":android") {
-    apply plugin: "android"
-
-    configurations { natives }
-
-    dependencies {
-        compile project(":core")
-        compile "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
-        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
-        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
-        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
-        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
-        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
-        compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers-android:$gdxVersion"
-        compile 'com.android.support:multidex:1.0.1'
-        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi"
-        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"
-        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
-        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
-        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
-    }
-    android.packagingOptions {
-        exclude 'META-INF/DEPENDENCIES.txt'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/dependencies.txt'
-        exclude 'META-INF/LGPL2.1'
-    }
-}
+// :android is excluded from settings.gradle (see buildscript comment above) so this block
+// is disabled until AGP/Gradle are modernized (issue #10).
+// project(":android") {
+//     apply plugin: "android"
+//
+//     configurations { natives }
+//
+//     dependencies {
+//         compile project(":core")
+//         compile "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
+//         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
+//         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
+//         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
+//         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
+//         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
+//         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+//         compile "com.badlogicgames.gdx:gdx-controllers-android:$gdxVersion"
+//         compile 'com.android.support:multidex:1.0.1'
+//         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+//         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi"
+//         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"
+//         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
+//         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
+//         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
+//     }
+//     android.packagingOptions {
+//         exclude 'META-INF/DEPENDENCIES.txt'
+//         exclude 'META-INF/LICENSE.txt'
+//         exclude 'META-INF/NOTICE.txt'
+//         exclude 'META-INF/NOTICE'
+//         exclude 'META-INF/LICENSE'
+//         exclude 'META-INF/DEPENDENCIES'
+//         exclude 'META-INF/notice.txt'
+//         exclude 'META-INF/license.txt'
+//         exclude 'META-INF/dependencies.txt'
+//         exclude 'META-INF/LGPL2.1'
+//     }
+// }
 
 project(":core") {
     apply plugin: "java"
