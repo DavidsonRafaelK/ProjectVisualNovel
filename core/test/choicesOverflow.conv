@@ -1,0 +1,11 @@
+<conversation xmlns="urn:conversations">
+    <branch name="default">
+        <choices>
+            choice one:
+            choice two:
+            choice three:
+            choice four:
+            choice five:
+        </choices>
+    </branch>
+</conversation>
