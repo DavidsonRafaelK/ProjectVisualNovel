@@ -450,7 +450,7 @@ public class GUIManager implements Controllable {
                 conversationController.nextCommand();
                 break;
             case LOAD:
-                SaveManager.load(Gdx.files.internal("Saves/" + selection));
+                SaveManager.load(Gdx.files.local("Saves/" + selection));
                 break;
         }
     }

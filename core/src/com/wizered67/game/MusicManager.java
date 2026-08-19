@@ -32,11 +32,20 @@ public class MusicManager {
         volumes = new float[MAX_MUSIC];
     }
 
+    private boolean isValidIndex(int index) {
+        if (index < 0 || index >= MAX_MUSIC) {
+            GameManager.error("Music Index " + index + " is out of bounds, max is " + (MAX_MUSIC - 1) + ".");
+            return false;
+        }
+        return true;
+    }
+
     /** Plays the music with identifier NAME. If it was already playing but paused, resume it.
      * If different music was playing before on the same index, stop it. Iff LOOPS,
      * the music will continue to loop.
      */
     public void playMusic(String id, boolean loops, float volume, int index) {
+        if (!isValidIndex(index)) return;
         if (GameManager.assetManager().isLoaded(id)) {
             Music music = GameManager.assetManager().get(id);
             playMusic(music, id, loops, volume, index);
@@ -50,6 +59,7 @@ public class MusicManager {
      * Iff LOOPS, the music will continue to loop.
      */
     public void playMusic(Music music, String name, boolean loops, float volume, int index) {
+        if (!isValidIndex(index)) return;
         if (currentMusicName[index] != null && currentMusicName[index].equals(name)) {
             if (paused[index]) {
                 resumeMusic(index);
@@ -67,6 +77,7 @@ public class MusicManager {
     /** Stops the music currently being played at INDEX
      * and resets corresponding currentMusic and currentMusicName. */
     public void stopMusic(int index) {
+        if (!isValidIndex(index)) return;
         if (currentMusic[index] != null) {
             currentMusic[index].stop();
             currentMusicName[index] = null;
@@ -75,12 +86,14 @@ public class MusicManager {
     }
     /** Resume the music currently being played at INDEX. */
     public void resumeMusic(int index) {
+        if (!isValidIndex(index)) return;
         if (currentMusic[index] != null) {
             currentMusic[index].play();
         }
     }
     /** Pause the music currently being played at INDEX. */
     public void pauseMusic(int index) {
+        if (!isValidIndex(index)) return;
         if (currentMusic[index] != null) {
             currentMusic[index].pause();
             paused[index] = true;
@@ -88,6 +101,7 @@ public class MusicManager {
     }
     /** Sets whether the music at index INDEX should loop. */
     public void setLooping(boolean loop, int index) {
+        if (!isValidIndex(index)) return;
         if (currentMusic[index] != null) {
             currentMusic[index].setLooping(loop);
             looping[index] = loop;
@@ -95,6 +109,7 @@ public class MusicManager {
     }
     /** Sets the volume of the music playing at INDEX. */
     public void setVolume(float volume, int index) {
+        if (!isValidIndex(index)) return;
         if (currentMusic[index] != null) {
             float globalVolume = ((MusicParameters)GameManager.assetManager().getParameters(currentMusicName[index])).volume;
             currentMusic[index].setVolume(volume * globalVolume);
@@ -103,10 +118,12 @@ public class MusicManager {
     }
     /** Returns the name of the music playing at INDEX. */
     public String getCurrentMusicName(int index) {
+        if (!isValidIndex(index)) return null;
         return currentMusicName[index];
     }
     /** Returns a Music object for the music playing at INDEX. */
     public Music getCurrentMusic(int index) {
+        if (!isValidIndex(index)) return null;
         return currentMusic[index];
     }
     /** Reloads the music that was previously playing. */
