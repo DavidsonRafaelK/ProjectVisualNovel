@@ -48,6 +48,7 @@ public class ShowChoicesCommandFactory implements ConversationCommandFactory<Sho
                 String messages = "";
                 for (String line : lines) {
                     line = line.trim();
+                    if (line.isEmpty()) continue;
                     if (line.charAt(line.length() - 1) == ':' && line.charAt(line.length() - 2) != '\\') {
                         if (!messages.isEmpty()) {
                             addMessageCommand(messages, choiceNum, commandChoices);

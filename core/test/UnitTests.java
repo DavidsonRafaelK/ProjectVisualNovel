@@ -43,6 +43,13 @@ public class UnitTests {
     }
 
     @Test
+    public void blankLineInChoiceDoesNotCrash() throws ConversationParsingException {
+        ConversationLoader loader = new ConversationLoaderImpl();
+        Conversation conv = loader.loadConversation(Gdx.files.internal("choicesBug.conv"));
+        assertNotNull(conv);
+    }
+
+    @Test
     public void parsingTest() {
         assertNotNull("Test1 Conversation is null.", test1);
         LinkedList<ConversationCommand> branch = test1.getBranch("BranchOne");
