@@ -1,4 +1,5 @@
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.wizered67.game.MusicManager;
 import com.wizered67.game.conversations.Conversation;
 import com.wizered67.game.conversations.commands.ConversationCommand;
@@ -68,6 +69,18 @@ public class UnitTests {
         musicManager.setVolume(1f, -1);
         assertNull(musicManager.getCurrentMusicName(5));
         assertNull(musicManager.getCurrentMusic(-1));
+    }
+
+    @Test
+    public void fileWrittenToLocalIsReadableFromLocal() {
+        FileHandle save = Gdx.files.local("Saves/testUnitSave.txt");
+        save.writeString("test", false);
+        try {
+            assertTrue("File saved via local should exist when read via local (same root)",
+                    Gdx.files.local("Saves/testUnitSave.txt").exists());
+        } finally {
+            save.delete();
+        }
     }
 
     @Test
