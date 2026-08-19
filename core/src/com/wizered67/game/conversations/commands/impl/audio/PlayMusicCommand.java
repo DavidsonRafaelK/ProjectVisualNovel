@@ -64,6 +64,7 @@ public class PlayMusicCommand implements ConversationCommand {
         }
         GameManager.musicManager().playMusic(music, loops, volume, index);
     }
+
     /** Whether to wait before proceeding to the next command in the branch. */
     @Override
     public boolean waitToProceed() {
