@@ -5,8 +5,7 @@ buildscript {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
     dependencies {
-        // AGP 2.2.2 was only ever published to JCenter, which is permanently shut down;
-        // :android is excluded from settings.gradle until AGP/Gradle are modernized (issue #10).
+        classpath "com.android.tools.build:gradle:3.6.0"
     }
 }
 
@@ -38,53 +37,55 @@ project(":desktop") {
 
 
     dependencies {
-        compile project(":core")
-        compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        compile "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
-        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+        implementation project(":core")
+        implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        implementation "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
+        implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
     }
 }
 
-// :android is excluded from settings.gradle (see buildscript comment above) so this block
-// is disabled until AGP/Gradle are modernized (issue #10).
-// project(":android") {
-//     apply plugin: "android"
-//
-//     configurations { natives }
-//
-//     dependencies {
-//         compile project(":core")
-//         compile "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
-//         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
-//         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
-//         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
-//         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
-//         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
-//         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
-//         compile "com.badlogicgames.gdx:gdx-controllers-android:$gdxVersion"
-//         compile 'com.android.support:multidex:1.0.1'
-//         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-//         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi"
-//         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"
-//         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
-//         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
-//         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
-//     }
-//     android.packagingOptions {
-//         exclude 'META-INF/DEPENDENCIES.txt'
-//         exclude 'META-INF/LICENSE.txt'
-//         exclude 'META-INF/NOTICE.txt'
-//         exclude 'META-INF/NOTICE'
-//         exclude 'META-INF/LICENSE'
-//         exclude 'META-INF/DEPENDENCIES'
-//         exclude 'META-INF/notice.txt'
-//         exclude 'META-INF/license.txt'
-//         exclude 'META-INF/dependencies.txt'
-//         exclude 'META-INF/LGPL2.1'
-//     }
-// }
+/** :android is excluded from settings.gradle (see buildscript comment above) so this block
+ *  is disabled until AGP/Gradle are modernized (issue #10).
+ */
+ project(":android") {
+     apply plugin: "com.android.application"
+
+     configurations { natives }
+
+     dependencies {
+         implementation project(":core")
+         implementation "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
+         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
+         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
+         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
+         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
+         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
+         implementation "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+         implementation "com.badlogicgames.gdx:gdx-controllers-android:$gdxVersion"
+         implementation 'com.android.support:multidex:1.0.1'
+         implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi"
+         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"
+         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
+         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
+         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
+     }
+
+     android.packagingOptions {
+         exclude 'META-INF/DEPENDENCIES.txt'
+         exclude 'META-INF/LICENSE.txt'
+         exclude 'META-INF/NOTICE.txt'
+         exclude 'META-INF/NOTICE'
+         exclude 'META-INF/LICENSE'
+         exclude 'META-INF/DEPENDENCIES'
+         exclude 'META-INF/notice.txt'
+         exclude 'META-INF/license.txt'
+         exclude 'META-INF/dependencies.txt'
+         exclude 'META-INF/LGPL2.1'
+     }
+ }
 
 project(":core") {
     apply plugin: "java"
@@ -93,19 +94,19 @@ project(":core") {
     sourceSets.test.resources.srcDirs = ["test/"]
 
     dependencies {
-        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-        compile "com.kotcrab.vis:vis-ui:$visuiVersion"
-        compile "org.luaj:luaj-jse:3.0"
-        compile 'com.esotericsoftware:kryo:4.0.0'
-        compile "com.rafaskoberg.gdx:typing-label:1.0.4"
+        implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        implementation "com.kotcrab.vis:vis-ui:$visuiVersion"
+        implementation "org.luaj:luaj-jse:3.0"
+        implementation 'com.esotericsoftware:kryo:4.0.0'
+        implementation "com.rafaskoberg.gdx:typing-label:1.0.4"
 
-        testCompile "junit:junit:4.11"
-        testCompile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
-        testCompile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        testCompile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        testCompile group: 'junit-addons', name: 'junit-addons', version: '1.4'
+        testImplementation "junit:junit:4.11"
+        testImplementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        testImplementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+        testImplementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        testImplementation group: 'junit-addons', name: 'junit-addons', version: '1.4'
 
     }
 }
