@@ -1,4 +1,6 @@
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+import com.wizered67.game.MusicManager;
 import com.wizered67.game.conversations.Conversation;
 import com.wizered67.game.conversations.commands.ConversationCommand;
 import com.wizered67.game.conversations.commands.impl.base.ChangeBranchCommand;
@@ -40,6 +42,45 @@ public class UnitTests {
     @Test
     public void testFilesExist() {
         assertTrue("test1.conv doesn't exist.", Gdx.files.internal("test1.conv").exists());
+    }
+
+    @Test
+    public void blankLineInChoiceDoesNotCrash() throws ConversationParsingException {
+        ConversationLoader loader = new ConversationLoaderImpl();
+        Conversation conv = loader.loadConversation(Gdx.files.internal("choicesBug.conv"));
+        assertNotNull(conv);
+    }
+
+    @Test
+    public void fifthChoiceOverflowDoesNotCrash() throws ConversationParsingException {
+        ConversationLoader loader = new ConversationLoaderImpl();
+        Conversation conv = loader.loadConversation(Gdx.files.internal("choicesOverflow.conv"));
+        assertNotNull(conv);
+    }
+
+    @Test
+    public void invalidMusicIndexDoesNotCrash() {
+        MusicManager musicManager = new MusicManager();
+        musicManager.playMusic(null, "test", false, 1f, 5);
+        musicManager.stopMusic(-1);
+        musicManager.pauseMusic(5);
+        musicManager.resumeMusic(-1);
+        musicManager.setLooping(true, 5);
+        musicManager.setVolume(1f, -1);
+        assertNull(musicManager.getCurrentMusicName(5));
+        assertNull(musicManager.getCurrentMusic(-1));
+    }
+
+    @Test
+    public void fileWrittenToLocalIsReadableFromLocal() {
+        FileHandle save = Gdx.files.local("Saves/testUnitSave.txt");
+        save.writeString("test", false);
+        try {
+            assertTrue("File saved via local should exist when read via local (same root)",
+                    Gdx.files.local("Saves/testUnitSave.txt").exists());
+        } finally {
+            save.delete();
+        }
     }
 
     @Test

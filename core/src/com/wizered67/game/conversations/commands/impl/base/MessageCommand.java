@@ -87,7 +87,7 @@ public class MessageCommand implements ConversationCommand {
         conversationController.setCurrentSpeakerSound(characterSpeaking.getSpeakingSound());
         index += 1;
     }
-    /** Whether the text should be updated. False iff there is a current subcommand
+    /** Whether the text should be updated. False if there is a current subcommand
      * that is being waited on. */
     public boolean shouldUpdate() {
         return currentSubcommand == null || !currentSubcommand.waitToProceed();
@@ -169,6 +169,7 @@ public class MessageCommand implements ConversationCommand {
             } else {
                 if (storedText.isEmpty()) {
                     Gdx.app.error("Command Parser", "Trying to add text with no speaker declared.");
+                    continue;
                 }
                 String last = storedText.get(storedText.size() - 1);
                 line = line.replaceAll("\\\\:", ":");

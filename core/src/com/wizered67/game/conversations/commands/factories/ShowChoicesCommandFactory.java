@@ -48,12 +48,17 @@ public class ShowChoicesCommandFactory implements ConversationCommandFactory<Sho
                 String messages = "";
                 for (String line : lines) {
                     line = line.trim();
+                    if (line.isEmpty()) continue;
                     if (line.charAt(line.length() - 1) == ':' && line.charAt(line.length() - 2) != '\\') {
                         if (!messages.isEmpty()) {
                             addMessageCommand(messages, choiceNum, commandChoices);
                         }
                         messages = "";
                         choiceNum += 1;
+                        if (choiceNum >= numChoices) {
+                            Gdx.app.error("Command parser", "Too many choices, max is " + numChoices + ".");
+                            break;
+                        }
                         textChoices[choiceNum] = line.substring(0, line.length() - 1);
                         afterChoice = true;
                     } else {
