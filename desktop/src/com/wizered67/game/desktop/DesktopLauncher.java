@@ -18,7 +18,7 @@ public class DesktopLauncher {
 			config.height = Constants.DEFAULT_HEIGHT; //576
 			config.resizable = Constants.RESIZABLE;
 		}
-		//config.fullscreen = true;
+		// config.fullscreen = true;
 		//config.foregroundFPS = 5;
 		//config.vSyncEnabled = true;
 		new LwjglApplication(new MainGame(), config);
