@@ -1,4 +1,5 @@
 import com.badlogic.gdx.Gdx;
+import com.wizered67.game.MusicManager;
 import com.wizered67.game.conversations.Conversation;
 import com.wizered67.game.conversations.commands.ConversationCommand;
 import com.wizered67.game.conversations.commands.impl.base.ChangeBranchCommand;
@@ -54,6 +55,19 @@ public class UnitTests {
         ConversationLoader loader = new ConversationLoaderImpl();
         Conversation conv = loader.loadConversation(Gdx.files.internal("choicesOverflow.conv"));
         assertNotNull(conv);
+    }
+
+    @Test
+    public void invalidMusicIndexDoesNotCrash() {
+        MusicManager musicManager = new MusicManager();
+        musicManager.playMusic(null, "test", false, 1f, 5);
+        musicManager.stopMusic(-1);
+        musicManager.pauseMusic(5);
+        musicManager.resumeMusic(-1);
+        musicManager.setLooping(true, 5);
+        musicManager.setVolume(1f, -1);
+        assertNull(musicManager.getCurrentMusicName(5));
+        assertNull(musicManager.getCurrentMusic(-1));
     }
 
     @Test
