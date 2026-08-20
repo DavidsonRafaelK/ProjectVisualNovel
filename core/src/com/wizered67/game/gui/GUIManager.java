@@ -269,7 +269,9 @@ public class GUIManager implements Controllable {
     public void scrollTranscript(int direction) {
         transcriptPane.fling(1, 0, -direction * 50);
         transcriptScrolling = direction * 0.005f * transcriptPane.getHeight();
-        System.out.println("Velocity set to " + transcriptPane.getVelocityY());
+        if (Constants.DEBUG) {
+            System.out.println("Velocity set to " + transcriptPane.getVelocityY());
+        }
     }
 
     public void stopTranscriptScrolling() {

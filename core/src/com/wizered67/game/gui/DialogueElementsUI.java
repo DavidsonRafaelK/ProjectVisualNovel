@@ -35,7 +35,9 @@ public class DialogueElementsUI {
             tb.setUserObject(i);
             tb.addListener(new ChangeListener() {
                 public void changed (ChangeEvent event, Actor actor) {
-                    System.out.println("Clicked button " + actor.getUserObject());
+                    if (Constants.DEBUG) {
+                        System.out.println("Clicked button " + actor.getUserObject());
+                    }
                     guiManager.conversationController().processChoice((Integer) actor.getUserObject());
                     event.cancel();
                     ((Button) actor).setProgrammaticChangeEvents(false);

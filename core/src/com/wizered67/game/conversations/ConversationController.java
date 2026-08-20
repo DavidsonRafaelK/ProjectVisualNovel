@@ -197,7 +197,9 @@ public class ConversationController implements Controllable {
     public void update(float deltaTime) {
         if (GameManager.assetManager().getQueuedAssets() != 0) {
             GameManager.assetManager().update();
-            System.out.println(GameManager.assetManager().getProgress());
+            if (Constants.DEBUG) {
+                System.out.println(GameManager.assetManager().getProgress());
+            }
         }
         if (currentConversation != null) {
             if (!paused) {
