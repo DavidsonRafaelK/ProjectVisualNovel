@@ -134,7 +134,7 @@ public class MusicManager {
             }
             if (currentMusicName[i] != null && GameManager.assetManager().isLoaded(currentMusicName[i], Music.class)) {
                 currentMusic[i] = GameManager.assetManager().get(currentMusicName[i], Music.class);
-                currentMusic[i].setVolume(volumes[i]);
+                setVolume(volumes[i], i);
                 currentMusic[i].setLooping(looping[i]);
                 currentMusic[i].setPosition(0);
             }

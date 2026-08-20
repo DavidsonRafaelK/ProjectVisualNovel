@@ -1,5 +1,5 @@
 <resources xmlns="urn:resourceConfig">
 	<resource name="discussion.mp3" identifier="discussion.mp3">
-		<music volume="1"/>
+		<music volume="0.3"/>
 	</resource>
 </resources>
