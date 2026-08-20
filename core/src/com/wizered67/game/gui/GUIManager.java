@@ -421,7 +421,7 @@ public class GUIManager implements Controllable {
                 try {
                     conversationController.loadConversation(selection);
                 } catch (ConversationParsingException e) {
-                    e.printStackTrace();
+                    GameManager.error("Failed to load conversation '" + selection + "' from debug menu.", e);
                 }
                 break;
             case BRANCH:
