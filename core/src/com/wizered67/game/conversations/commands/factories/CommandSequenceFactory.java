@@ -1,6 +1,7 @@
 package com.wizered67.game.conversations.commands.factories;
 
 import com.badlogic.gdx.utils.XmlReader;
+import com.wizered67.game.GameManager;
 import com.wizered67.game.conversations.commands.ConversationCommand;
 import com.wizered67.game.conversations.commands.impl.base.CommandSequence;
 import com.wizered67.game.conversations.xmlio.ConversationLoader;
@@ -23,8 +24,8 @@ public enum CommandSequenceFactory implements ConversationCommandFactory<Command
                 ConversationCommand command = loader.getCommand(c);
                 cs.addCommand(command);
             } catch (ConversationParsingException e) {
-                //if there's a parsing error, print it out and don't add this command to the sequence.
-                e.printStackTrace();
+                //if there's a parsing error, log it and don't add this command to the sequence.
+                GameManager.error("Failed to parse command in sequence.", e);
             }
         }
         return cs;

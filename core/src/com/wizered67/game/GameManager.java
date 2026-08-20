@@ -67,6 +67,10 @@ public class GameManager {
 		Gdx.app.error("ERROR", error);
 	}
 
+	public static void error(String error, Throwable t) {
+		Gdx.app.error("ERROR", error, t);
+	}
+
     public static MusicManager musicManager() {
         return game.musicManager;
     }

@@ -1,5 +1,6 @@
 package com.wizered67.game.conversations.commands.impl.base;
 
+import com.wizered67.game.GameManager;
 import com.wizered67.game.conversations.CompleteEvent;
 import com.wizered67.game.conversations.ConversationController;
 import com.wizered67.game.conversations.commands.ConversationCommand;
@@ -31,7 +32,7 @@ public class ChangeConversationCommand implements ConversationCommand {
             conversationController.loadConversation(newConversation);
             conversationController.setBranch(newBranch);
         } catch (ConversationParsingException e) {
-            e.printStackTrace();
+            GameManager.error("Failed to change to conversation '" + newConversation + "'.", e);
         }
 
     }

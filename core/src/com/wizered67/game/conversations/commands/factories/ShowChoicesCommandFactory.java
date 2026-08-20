@@ -2,6 +2,7 @@ package com.wizered67.game.conversations.commands.factories;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.XmlReader;
+import com.wizered67.game.GameManager;
 import com.wizered67.game.conversations.commands.ConversationCommand;
 import com.wizered67.game.conversations.commands.impl.base.MessageCommand;
 import com.wizered67.game.conversations.commands.impl.base.ShowChoicesCommand;
@@ -75,7 +76,7 @@ public enum ShowChoicesCommandFactory implements ConversationCommandFactory<Show
                         commands.add(c);
                     }
                 } catch (ConversationParsingException e) {
-                    e.printStackTrace();
+                    GameManager.error("Failed to parse choice command.", e);
                 }
                 afterChoice = false;
             }

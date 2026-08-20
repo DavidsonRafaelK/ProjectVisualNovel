@@ -40,7 +40,7 @@ public enum ScreenFadeCommandFactory implements ConversationCommandFactory<Scree
             try {
                 commands.add(loader.getCommand(child));
             } catch (ConversationParsingException e) {
-                e.printStackTrace();
+                GameManager.error("Failed to parse command in screen fade.", e);
             }
 
         }
