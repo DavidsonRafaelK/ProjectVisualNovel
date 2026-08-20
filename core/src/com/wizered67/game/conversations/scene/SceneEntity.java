@@ -114,7 +114,6 @@ public abstract class SceneEntity implements Comparable<SceneEntity> {
         if (currentAnimation != null) { //todo decide if should check visibility first
             stateTime += deltaTime;
             updateSprite();
-            //sprite.setCenter(sprite.getWidth() * scale / 2, 0);
             if (currentAnimation.isAnimationFinished(stateTime) && !wasFinished) {
                 manager.complete(CompleteEvent.animationEnd(animationName));
                 wasFinished = true;
@@ -183,7 +182,6 @@ public abstract class SceneEntity implements Comparable<SceneEntity> {
      * list of entities in the scene, which is O(logN + D), where N is the total number of entities
      * in the list and D is the number of entities with the same depth as this entity's previous depth.
      */
-    //todo split into 2 methods? one changes variable and other updates.
     public void setDepth(SceneManager m, int newDepth) {
         if (hasDepth) {
             m.removeFromSorted(this);
@@ -234,12 +232,6 @@ public abstract class SceneEntity implements Comparable<SceneEntity> {
         if (currentAnimation == null) {
             GameManager.error("No animation found: " + name);
         }
-        //update(0);
-        /*
-        if (!isVisible()) {
-            return false;
-        }
-        */
         return currentAnimation != null;
     }
     /** Returns the name of this SceneCharacter's current Animation. */
@@ -255,7 +247,6 @@ public abstract class SceneEntity implements Comparable<SceneEntity> {
             sprite.setRegion(currentTexture);
             sprite.setSize(sprite.getRegionWidth(), sprite.getRegionHeight());
             sprite.setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
-            //sprite.setBounds(position.x, position.y, currentSprite.getRegionWidth() * scale.x, currentSprite.getRegionHeight() * scale.y);
             sprite.setOrigin(Math.abs(sprite.getWidth()) / 2, 0);
         }
     }
@@ -264,7 +255,6 @@ public abstract class SceneEntity implements Comparable<SceneEntity> {
         TextureRegion currentTexture = texture;
         sprite.setTexture(currentTexture.getTexture());
         sprite.setRegion(currentTexture);
-        //sprite.setBounds(position.x, position.y, currentSprite.getRegionWidth(), currentSprite.getRegionHeight());
         sprite.setOrigin(sprite.getWidth() / 2, 0);
     }
 
