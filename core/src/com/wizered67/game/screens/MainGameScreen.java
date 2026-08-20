@@ -60,28 +60,19 @@ public class MainGameScreen implements Screen {
     }
 
     private void updateGUI(float delta){
-        //hudViewport.apply(true);
         GameManager.mainViewport().apply();
         GameManager.guiManager().update(delta);
     }
 
     @Override
     public void resize(int width, int height) {
-        //myViewport.update(width, height);
-        //hudViewport.update(width, height);
-        //debugCamera.viewportWidth = Constants.toMeters(myViewport.getWorldWidth());//Constants.toMeters(width / myViewport.getScale());
-        //debugCamera.viewportHeight = Constants.toMeters(myViewport.getWorldHeight());//Constants.toMeters(height / myViewport.getScale());
-        //debugCamera.update();
-        //GUIManager.resize(width, height);
         Camera viewportCamera = GameManager.mainViewport().getCamera();
         Vector3 centerVector = new Vector3(viewportCamera.viewportWidth / 2, viewportCamera.viewportHeight / 2, viewportCamera.position.z);
         Vector3 offset = viewportCamera.position.cpy().sub(centerVector);
         GameManager.mainViewport().update(width, height, true);
-        //todo make sure cameras get updated when changing scene
         //Centers the camera and then offsets it by the difference between the previous viewport center and the camera position
         viewportCamera.position.add(offset);
         viewportCamera.update();
-        //viewportCamera.position.
         GameManager.guiViewport().update(width, height);
         GameManager.guiManager().resize(width, height);
     }
@@ -103,11 +94,5 @@ public class MainGameScreen implements Screen {
 
     @Override
     public void dispose() {
-        /*
-        stage.dispose();
-        font.dispose();
-        batch.dispose();
-        shapes.dispose();
-        */
     }
 }

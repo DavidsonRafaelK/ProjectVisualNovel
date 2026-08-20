@@ -25,19 +25,7 @@ public enum VariableConditionCommandFactory implements ConversationCommandFactor
         boolean isFile = element.getBoolean("isfile", false);
         List<ConversationCommand> commands = new ArrayList<ConversationCommand>();
         List<ConversationCommand> elseCommands = new ArrayList<>();
-        //String text = element.getChild(0).getText().trim();
-        //Matcher matcher = scriptPattern.matcher(text);
-        //String script = "";
         String script = element.getAttribute("cond");
-        /*
-        if (matcher.matches()) {
-            script = matcher.group(1);
-            String messages = matcher.group(2);
-            if (!messages.trim().isEmpty()) {
-                commands.add(MessageCommand.makeCommand(messages));
-            }
-        }
-        */
         for (int i = 0; i < element.getChildCount(); i += 1) {
             XmlReader.Element c = element.getChild(i);
             if (i == element.getChildCount() - 1 && c.getName().equals("else")) {

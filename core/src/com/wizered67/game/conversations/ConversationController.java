@@ -134,7 +134,6 @@ public class ConversationController implements Controllable {
         }
         setSpeakerName(guiState.speakerLabelText);
         speakerLabel.setVisible(guiState.speakerLabelVisible);
-        //textboxLabel.setText(guiState.textboxLabelText);
         textboxLabel.restart(guiState.textboxLabelText);
         textboxLabel.setVisible(guiState.textboxLabelVisible);
         for (int i = 0; i < choiceButtons.length; i += 1) {
@@ -166,7 +165,6 @@ public class ConversationController implements Controllable {
     private void initScriptManagers() {
         scriptManagers = new HashMap<>();
         scriptManagers.put("Lua", new LuaScriptManager());
-        //scriptManagers.put("Groovy", new GroovyScriptManager());
     }
     /** Returns the default scripting language to be used if none is specified. */
     public static String defaultScriptingLanguage() {

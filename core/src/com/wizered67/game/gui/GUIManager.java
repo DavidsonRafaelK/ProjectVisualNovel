@@ -105,7 +105,6 @@ public class GUIManager implements Controllable {
         newDrawable.setLeftWidth(LEFT_PADDING);
         newDrawable.setRightWidth(LEFT_PADDING);
         newDrawable.setTopHeight(LEFT_PADDING / 2);
-        //newDrawable.setRightWidth(20);
         labelStyle.background = newDrawable;
         skin.add("default", labelStyle);
 
@@ -113,8 +112,6 @@ public class GUIManager implements Controllable {
         speakerLabelStyle.font = skin.getFont("default");
         Drawable speakerDrawable = skin.newDrawable("white", Color.GRAY);
         speakerDrawable.setLeftWidth(5);
-        //speakerDrawable.setRightWidth(5);
-        //newDrawable.setRightWidth(20);
         speakerLabelStyle.background = speakerDrawable;
         skin.add("speakerStyle", speakerLabelStyle);
 
@@ -134,7 +131,6 @@ public class GUIManager implements Controllable {
         textFieldStyle.fontColor = Color.BLACK;
         skin.add("default", textFieldStyle);
 
-        //todo init and add dialogue elements UI
         dialogueElementsUI = new DialogueElementsUI(this, skin);
         stage.addActor(dialogueElementsUI.getMainTable());
         textboxLabel = dialogueElementsUI.getTextboxLabel();
@@ -159,8 +155,7 @@ public class GUIManager implements Controllable {
         // Store the default libgdx font under the name "default".
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        //float densityIndependentSize = Constants.REGULAR_FONT_SIZE * Gdx.graphics.getDensity();
-        parameter.size = Constants.REGULAR_FONT_SIZE; //(int) (Constants.REGULAR_FONT_SIZE * Gdx.graphics.getHeight() / Constants.DEFAULT_HEIGHT);//Math.round(densityIndependentSize);
+        parameter.size = Constants.REGULAR_FONT_SIZE;
         defaultFont = generator.generateFont(parameter); // font size 12 pixels
         defaultFont.getData().markupEnabled = true;
         generator.dispose(); // don't forget to dispose to avoid memory leaks!
@@ -189,7 +184,6 @@ public class GUIManager implements Controllable {
                 transcriptPane.fling(1, 0, velocity);
                 transcriptPane.setVelocityY(velocity + 4 * Math.signum(velocity));
             }
-            //transcriptPane.setScrollY(transcriptPane.getScrollY() + transcriptScrolling);
         }
         updateTranscript(); //todo remove, only do so when transcript is visible
 	}
@@ -198,7 +192,6 @@ public class GUIManager implements Controllable {
         transcriptTable.setVisible(!transcriptTable.isVisible());
         conversationController.setPaused(transcriptTable.isVisible());
         updateTranscript(); //todo fix. part of hacky solution to make update first time
-        //transcriptPane.invalidate();
         transcriptPane.validate();
         transcriptPane.setScrollPercentY(1f);
         transcriptPane.updateVisualScroll();
@@ -217,16 +210,6 @@ public class GUIManager implements Controllable {
      * WIDTH by HEIGHT. Keeps GUI elements proportional to virtual size.
      */
 	public void resize(int width, int height) {
-	    /*
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        //float densityIndependentSize = Constants.REGULAR_FONT_SIZE * Gdx.graphics.getDensity();
-        parameter.size = (int) (Constants.REGULAR_FONT_SIZE * Gdx.graphics.getHeight() / Constants.VIRTUAL_HEIGHT);//Math.round(densityIndependentSize);
-        defaultFont = generator.generateFont(parameter); // font size 12 pixels
-        defaultFont.getData().markupEnabled = true;
-        generator.dispose(); // don't forget to dispose to avoid memory leaks!
-        skin.add("default", defaultFont);
-        */
         dialogueElementsUI.resize(width, height);
 	}
 
@@ -261,7 +244,6 @@ public class GUIManager implements Controllable {
         transcriptPane.setHeight(Gdx.graphics.getHeight() - 64);
         transcriptPane.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, Align.center);
         transcriptPane.toFront();
-        //transcriptPane.setVisible(false);
         stage.addActor(transcriptTable);
         transcriptTable.add(transcriptPane).expand().fill().pad(40);
     }
@@ -299,8 +281,6 @@ public class GUIManager implements Controllable {
         List.ListStyle listStyle = new List.ListStyle(skin.getFont("default"), Color.GRAY, Color.WHITE, skin.newDrawable("white", Color.LIGHT_GRAY));
         listStyle.background = skin.newDrawable("white", Color.DARK_GRAY);
         debugSelector = new List<>(listStyle);
-        //debugSelector.setItems("demonstration", "test conversation");
-        //debugSelector.setSelectedIndex(-1);
         ScrollPane.ScrollPaneStyle scrollPaneStyle = new ScrollPane.ScrollPaneStyle();
         debugPane = new ScrollPane(debugSelector, scrollPaneStyle);
         debugPane.setWidth(Gdx.graphics.getWidth() / 3);
@@ -441,9 +421,6 @@ public class GUIManager implements Controllable {
                 } catch (ConversationParsingException e) {
                     e.printStackTrace();
                 }
-
-                //conversationController.setBranch("default");
-                //conversationController.nextCommand();
                 break;
             case BRANCH:
                 conversationController.setBranch(selection);
