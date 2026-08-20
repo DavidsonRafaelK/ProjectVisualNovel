@@ -9,15 +9,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  *
  * @author Adam Victor
  */
-public class EntityScaleCommandFactory implements ConversationCommandFactory<EntityScaleCommand> {
-    private final static EntityScaleCommandFactory INSTANCE = new EntityScaleCommandFactory();
+public enum EntityScaleCommandFactory implements ConversationCommandFactory<EntityScaleCommand> {
 
-    public static EntityScaleCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private EntityScaleCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public EntityScaleCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

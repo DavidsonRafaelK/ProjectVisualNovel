@@ -8,15 +8,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  * Factory for creating a ExitCommand from an XML element.
  * @author Adam Victor
  */
-public class ExitCommandFactory implements ConversationCommandFactory<ExitCommand> {
-    private final static ExitCommandFactory INSTANCE = new ExitCommandFactory();
+public enum ExitCommandFactory implements ConversationCommandFactory<ExitCommand> {
 
-    public static ExitCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private ExitCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public ExitCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

@@ -10,15 +10,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  *
  * @author Adam Victor
  */
-public class ScreenShakeCommandFactory implements ConversationCommandFactory<ScreenShakeCommand> {
-    private final static ScreenShakeCommandFactory INSTANCE = new ScreenShakeCommandFactory();
+public enum ScreenShakeCommandFactory implements ConversationCommandFactory<ScreenShakeCommand> {
 
-    public static ScreenShakeCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private ScreenShakeCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public ScreenShakeCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

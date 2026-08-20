@@ -19,15 +19,10 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  * contains all the necessary commands so that they can be executed in sequence.
  * @author Adam Victor
  */
-public class ModifyImageCommandCreatorFactory implements ConversationCommandFactory<CommandSequence> {
-    private final static ModifyImageCommandCreatorFactory INSTANCE = new ModifyImageCommandCreatorFactory();
+public enum ModifyImageCommandCreatorFactory implements ConversationCommandFactory<CommandSequence> {
 
-    public static ModifyImageCommandCreatorFactory getInstance() {
-        return INSTANCE;
-    }
+    INSTANCE;
 
-    private ModifyImageCommandCreatorFactory() {
-    }
     /** Extracts all information from the <image> element and uses it to create
      * the subcommands necessary to modify its state as specified.
      */

@@ -8,15 +8,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  * Factory for creating a BackgroundSetCommand from an XML element.
  * @author Adam Victor
  */
-public class BackgroundSetFactory implements ConversationCommandFactory<BackgroundSetCommand> {
+public enum BackgroundSetFactory implements ConversationCommandFactory<BackgroundSetCommand> {
 
-    private final static BackgroundSetFactory INSTANCE = new BackgroundSetFactory();
-
-    public static BackgroundSetFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private BackgroundSetFactory() {}
+    INSTANCE;
 
     public BackgroundSetCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {
         String filename = element.getAttribute("id");

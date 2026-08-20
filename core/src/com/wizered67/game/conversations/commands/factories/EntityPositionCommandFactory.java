@@ -9,15 +9,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  *
  * @author Adam Victor
  */
-public class EntityPositionCommandFactory implements ConversationCommandFactory<EntityPositionCommand> {
-    private final static EntityPositionCommandFactory INSTANCE = new EntityPositionCommandFactory();
+public enum EntityPositionCommandFactory implements ConversationCommandFactory<EntityPositionCommand> {
 
-    public static EntityPositionCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private EntityPositionCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public EntityPositionCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

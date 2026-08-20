@@ -9,15 +9,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  *
  * @author Adam Victor
  */
-public class CharacterVisibleCommandFactory implements ConversationCommandFactory<CharacterVisibleCommand> {
-    private final static CharacterVisibleCommandFactory INSTANCE = new CharacterVisibleCommandFactory();
+public enum CharacterVisibleCommandFactory implements ConversationCommandFactory<CharacterVisibleCommand> {
 
-    public static CharacterVisibleCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private CharacterVisibleCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public CharacterVisibleCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

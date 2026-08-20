@@ -9,15 +9,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  *
  * @author Adam Victor
  */
-public class DelayCommandFactory implements ConversationCommandFactory<DelayCommand> {
-    private final static DelayCommandFactory INSTANCE = new DelayCommandFactory();
+public enum DelayCommandFactory implements ConversationCommandFactory<DelayCommand> {
 
-    public static DelayCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private DelayCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public DelayCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

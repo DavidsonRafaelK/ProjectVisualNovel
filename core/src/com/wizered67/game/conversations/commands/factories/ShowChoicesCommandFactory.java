@@ -17,15 +17,9 @@ import java.util.List;
  *
  * @author Adam Victor
  */
-public class ShowChoicesCommandFactory implements ConversationCommandFactory<ShowChoicesCommand> {
-    private final static ShowChoicesCommandFactory INSTANCE = new ShowChoicesCommandFactory();
+public enum ShowChoicesCommandFactory implements ConversationCommandFactory<ShowChoicesCommand> {
 
-    public static ShowChoicesCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private ShowChoicesCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public ShowChoicesCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

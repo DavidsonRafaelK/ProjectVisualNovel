@@ -9,15 +9,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  * Factory for creating a ChangeConversationCommand from an XML element.
  * @author Adam Victor
  */
-public class ChangeConversationCommandFactory implements ConversationCommandFactory<ChangeConversationCommand> {
+public enum ChangeConversationCommandFactory implements ConversationCommandFactory<ChangeConversationCommand> {
 
-    private final static ChangeConversationCommandFactory INSTANCE = new ChangeConversationCommandFactory();
-
-    public static ChangeConversationCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private ChangeConversationCommandFactory() {}
+    INSTANCE;
 
     @Override
     public ChangeConversationCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

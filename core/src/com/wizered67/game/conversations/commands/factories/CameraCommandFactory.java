@@ -9,15 +9,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  * Factory for creating a CameraCommand from an XML element.
  * @author Adam Victor
  */
-public class CameraCommandFactory implements ConversationCommandFactory<CameraCommand> {
+public enum CameraCommandFactory implements ConversationCommandFactory<CameraCommand> {
 
-    private final static CameraCommandFactory INSTANCE = new CameraCommandFactory();
-
-    public static CameraCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private CameraCommandFactory() {}
+    INSTANCE;
 
     @Override
     public CameraCommand makeCommand(ConversationLoader loader, XmlReader.Element root) {

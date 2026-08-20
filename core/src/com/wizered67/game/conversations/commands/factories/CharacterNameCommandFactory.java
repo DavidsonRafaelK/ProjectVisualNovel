@@ -8,15 +8,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  * Factory for creating a CharacterNameCommand from an XML element.
  * @author Adam Victor
  */
-public class CharacterNameCommandFactory implements ConversationCommandFactory<CharacterNameCommand> {
-    private final static CharacterNameCommandFactory INSTANCE = new CharacterNameCommandFactory();
+public enum CharacterNameCommandFactory implements ConversationCommandFactory<CharacterNameCommand> {
 
-    public static CharacterNameCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private CharacterNameCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public CharacterNameCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

@@ -9,15 +9,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  *
  * @author Adam Victor
  */
-public class SetSceneCommandFactory implements ConversationCommandFactory<SetSceneCommand> {
-    private final static SetSceneCommandFactory INSTANCE = new SetSceneCommandFactory();
+public enum SetSceneCommandFactory implements ConversationCommandFactory<SetSceneCommand> {
 
-    public static SetSceneCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private SetSceneCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public SetSceneCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

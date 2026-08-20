@@ -13,15 +13,9 @@ import java.util.Map;
  * Factory for creating an AssignCommand from an XML element.
  * @author Adam Victor
  */
-public class AssignCommandFactory implements ConversationCommandFactory<AssignCommand> {
+public enum AssignCommandFactory implements ConversationCommandFactory<AssignCommand> {
 
-    private final static AssignCommandFactory INSTANCE = new AssignCommandFactory();
-
-    public static AssignCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private AssignCommandFactory() {}
+    INSTANCE;
 
     @Override
     public AssignCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

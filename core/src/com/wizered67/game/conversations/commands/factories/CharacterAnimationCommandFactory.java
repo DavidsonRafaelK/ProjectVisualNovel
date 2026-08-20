@@ -8,15 +8,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  * Factory for creating a CharacterAnimationCommand from an XML element.
  * @author Adam Victor
  */
-public class CharacterAnimationCommandFactory implements ConversationCommandFactory<CharacterAnimationCommand> {
+public enum CharacterAnimationCommandFactory implements ConversationCommandFactory<CharacterAnimationCommand> {
 
-    private final static CharacterAnimationCommandFactory INSTANCE = new CharacterAnimationCommandFactory();
-
-    public static CharacterAnimationCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private CharacterAnimationCommandFactory() {}
+    INSTANCE;
 
     @Override
     public CharacterAnimationCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

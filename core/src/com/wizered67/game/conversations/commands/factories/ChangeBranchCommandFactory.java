@@ -9,15 +9,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  * Factory for creating a ChangeBranchCommand from an XML element.
  * @author Adam Victor
  */
-public class ChangeBranchCommandFactory implements ConversationCommandFactory<ChangeBranchCommand> {
+public enum ChangeBranchCommandFactory implements ConversationCommandFactory<ChangeBranchCommand> {
 
-    private final static ChangeBranchCommandFactory INSTANCE = new ChangeBranchCommandFactory();
-
-    public static ChangeBranchCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private ChangeBranchCommandFactory() {}
+    INSTANCE;
 
     @Override
     public ChangeBranchCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

@@ -9,15 +9,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  *
  * @author Adam Victor
  */
-public class PlaySoundCommandFactory implements ConversationCommandFactory<PlaySoundCommand> {
-    private final static PlaySoundCommandFactory INSTANCE = new PlaySoundCommandFactory();
+public enum PlaySoundCommandFactory implements ConversationCommandFactory<PlaySoundCommand> {
 
-    public static PlaySoundCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private PlaySoundCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public PlaySoundCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

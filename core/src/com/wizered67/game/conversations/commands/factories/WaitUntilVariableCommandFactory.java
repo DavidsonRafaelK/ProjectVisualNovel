@@ -10,15 +10,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  *
  * @author Adam Victor
  */
-public class WaitUntilVariableCommandFactory implements ConversationCommandFactory<WaitUntilVariableCommand> {
-    private final static WaitUntilVariableCommandFactory INSTANCE = new WaitUntilVariableCommandFactory();
+public enum WaitUntilVariableCommandFactory implements ConversationCommandFactory<WaitUntilVariableCommand> {
 
-    public static WaitUntilVariableCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private WaitUntilVariableCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public WaitUntilVariableCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

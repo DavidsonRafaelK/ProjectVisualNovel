@@ -9,15 +9,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  * Factory for creating a LoadUnloadCommand from an XML element.
  * @author Adam Victor
  */
-public class LoadUnloadCommandFactory implements ConversationCommandFactory<LoadUnloadCommand> {
-    private final static LoadUnloadCommandFactory INSTANCE = new LoadUnloadCommandFactory();
+public enum LoadUnloadCommandFactory implements ConversationCommandFactory<LoadUnloadCommand> {
 
-    public static LoadUnloadCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private LoadUnloadCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public LoadUnloadCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

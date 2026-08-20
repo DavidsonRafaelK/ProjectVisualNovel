@@ -9,15 +9,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  *
  * @author Adam Victor
  */
-public class WaitForLoadingCommandFactory implements ConversationCommandFactory<WaitForLoadingCommand> {
-    private final static WaitForLoadingCommandFactory INSTANCE = new WaitForLoadingCommandFactory();
+public enum WaitForLoadingCommandFactory implements ConversationCommandFactory<WaitForLoadingCommand> {
 
-    public static WaitForLoadingCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private WaitForLoadingCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public WaitForLoadingCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

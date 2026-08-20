@@ -10,15 +10,9 @@ import com.wizered67.game.conversations.xmlio.ConversationParsingException;
  * Factory for creating a CommandSequence from an XML element.
  * @author Adam Victor
  */
-public class CommandSequenceFactory implements ConversationCommandFactory<CommandSequence> {
-    private final static CommandSequenceFactory INSTANCE = new CommandSequenceFactory();
+public enum CommandSequenceFactory implements ConversationCommandFactory<CommandSequence> {
 
-    public static CommandSequenceFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private CommandSequenceFactory() {
-    }
+    INSTANCE;
 
     @Override
     public CommandSequence makeCommand(ConversationLoader loader, XmlReader.Element element) {

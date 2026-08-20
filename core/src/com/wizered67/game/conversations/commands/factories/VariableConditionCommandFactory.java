@@ -15,15 +15,9 @@ import java.util.List;
  *
  * @author Adam Victor
  */
-public class VariableConditionCommandFactory implements ConversationCommandFactory<VariableConditionCommand> {
-    private final static VariableConditionCommandFactory INSTANCE = new VariableConditionCommandFactory();
+public enum VariableConditionCommandFactory implements ConversationCommandFactory<VariableConditionCommand> {
 
-    public static VariableConditionCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private VariableConditionCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public VariableConditionCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

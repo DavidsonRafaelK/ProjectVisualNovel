@@ -15,16 +15,11 @@ import java.util.regex.Pattern;
  *
  * @author Adam Victor
  */
-public class VariableInitializeCommandFactory implements ConversationCommandFactory<VariableInitializeCommand> {
-    private final static VariableInitializeCommandFactory INSTANCE = new VariableInitializeCommandFactory();
+public enum VariableInitializeCommandFactory implements ConversationCommandFactory<VariableInitializeCommand> {
+
+    INSTANCE;
+
     private static final Pattern INIT_PATTERN = Pattern.compile("(\\S+) +(.+)");
-
-    public static VariableInitializeCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private VariableInitializeCommandFactory() {
-    }
 
     @Override
     public VariableInitializeCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

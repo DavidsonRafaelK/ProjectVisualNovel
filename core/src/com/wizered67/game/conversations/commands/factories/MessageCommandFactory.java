@@ -9,15 +9,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  *
  * @author Adam Victor
  */
-public class MessageCommandFactory implements ConversationCommandFactory<MessageCommand> {
-    private final static MessageCommandFactory INSTANCE = new MessageCommandFactory();
+public enum MessageCommandFactory implements ConversationCommandFactory<MessageCommand> {
 
-    public static MessageCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private MessageCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public MessageCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

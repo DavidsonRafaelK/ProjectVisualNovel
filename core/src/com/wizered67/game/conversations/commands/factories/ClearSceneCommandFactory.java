@@ -9,15 +9,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  *
  * @author Adam Victor
  */
-public class ClearSceneCommandFactory implements ConversationCommandFactory<ClearSceneCommand> {
-    private final static ClearSceneCommandFactory INSTANCE = new ClearSceneCommandFactory();
+public enum ClearSceneCommandFactory implements ConversationCommandFactory<ClearSceneCommand> {
 
-    public static ClearSceneCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private ClearSceneCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public ClearSceneCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

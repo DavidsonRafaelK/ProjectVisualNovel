@@ -17,15 +17,9 @@ import java.util.List;
  *
  * @author Adam Victor
  */
-public class ScreenFadeCommandFactory implements ConversationCommandFactory<ScreenFadeCommand> {
-    private final static ScreenFadeCommandFactory INSTANCE = new ScreenFadeCommandFactory();
+public enum ScreenFadeCommandFactory implements ConversationCommandFactory<ScreenFadeCommand> {
 
-    public static ScreenFadeCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private ScreenFadeCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public ScreenFadeCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

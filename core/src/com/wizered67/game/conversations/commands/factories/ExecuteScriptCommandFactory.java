@@ -10,15 +10,9 @@ import com.wizered67.game.conversations.xmlio.ConversationLoader;
  *
  * @author Adam Victor
  */
-public class ExecuteScriptCommandFactory implements ConversationCommandFactory<ExecuteScriptCommand> {
-    private final static ExecuteScriptCommandFactory INSTANCE = new ExecuteScriptCommandFactory();
+public enum ExecuteScriptCommandFactory implements ConversationCommandFactory<ExecuteScriptCommand> {
 
-    public static ExecuteScriptCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private ExecuteScriptCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public ExecuteScriptCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {

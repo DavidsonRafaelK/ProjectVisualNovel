@@ -15,15 +15,9 @@ import java.util.List;
  *
  * @author Adam Victor
  */
-public class VariableWhileCommandFactory implements ConversationCommandFactory<VariableWhileCommand> {
-    private final static VariableWhileCommandFactory INSTANCE = new VariableWhileCommandFactory();
+public enum VariableWhileCommandFactory implements ConversationCommandFactory<VariableWhileCommand> {
 
-    public static VariableWhileCommandFactory getInstance() {
-        return INSTANCE;
-    }
-
-    private VariableWhileCommandFactory() {
-    }
+    INSTANCE;
 
     @Override
     public VariableWhileCommand makeCommand(ConversationLoader loader, XmlReader.Element element) {
