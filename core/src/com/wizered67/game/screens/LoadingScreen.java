@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.wizered67.game.Constants;
 import com.wizered67.game.GameManager;
 
 /**
@@ -62,8 +63,9 @@ public class LoadingScreen implements Screen {
         if (GameManager.assetManager().update()) {
             loadResult.finishLoading();
         }
-        System.out.println(GameManager.assetManager().getProgress());
-
+        if (Constants.DEBUG) {
+            System.out.println(GameManager.assetManager().getProgress());
+        }
     }
 
     @Override
