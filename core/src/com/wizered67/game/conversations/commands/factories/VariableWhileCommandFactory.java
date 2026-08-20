@@ -1,6 +1,7 @@
 package com.wizered67.game.conversations.commands.factories;
 
 import com.badlogic.gdx.utils.XmlReader;
+import com.wizered67.game.GameManager;
 import com.wizered67.game.conversations.ConversationController;
 import com.wizered67.game.conversations.commands.ConversationCommand;
 import com.wizered67.game.conversations.commands.impl.scripting.VariableWhileCommand;
@@ -29,7 +30,7 @@ public enum VariableWhileCommandFactory implements ConversationCommandFactory<Va
             try {
                 repeatList.add(loader.getCommand(element.getChild(c)));
             } catch (ConversationParsingException e) {
-                e.printStackTrace();
+                GameManager.error("Failed to parse command in variable while loop.", e);
             }
         }
         return new VariableWhileCommand(repeatList, cond, isFile, language);

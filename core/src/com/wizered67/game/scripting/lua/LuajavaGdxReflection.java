@@ -2,6 +2,7 @@ package com.wizered67.game.scripting.lua;
 
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.ReflectionException;
+import com.wizered67.game.GameManager;
 import org.luaj.vm2.lib.jse.LuajavaLib;
 
 
@@ -20,7 +21,7 @@ public class LuajavaGdxReflection extends LuajavaLib {
         try {
             return ClassReflection.forName(name);
         } catch (ReflectionException e) {
-            e.printStackTrace();
+            GameManager.error("Failed to find class '" + name + "' for Lua reflection.", e);
         }
         return null;
 

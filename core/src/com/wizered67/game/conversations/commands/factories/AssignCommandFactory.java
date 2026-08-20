@@ -2,6 +2,7 @@ package com.wizered67.game.conversations.commands.factories;
 
 import com.badlogic.gdx.utils.XmlReader;
 import com.wizered67.game.conversations.commands.ConversationCommand;
+import com.wizered67.game.GameManager;
 import com.wizered67.game.conversations.commands.impl.base.AssignCommand;
 import com.wizered67.game.conversations.xmlio.ConversationLoader;
 import com.wizered67.game.conversations.xmlio.ConversationParsingException;
@@ -29,8 +30,7 @@ public enum AssignCommandFactory implements ConversationCommandFactory<AssignCom
                 try {
                     map.put(name, loader.getCommand(child));
                 } catch (ConversationParsingException e) {
-                    //If the command isn't valid print and ignore.
-                    e.printStackTrace();
+                    GameManager.error("Failed to parse assign command value for '" + name + "'.", e);
                 }
             }
         }

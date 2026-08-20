@@ -1,6 +1,7 @@
 package com.wizered67.game.conversations.commands.factories;
 
 import com.badlogic.gdx.utils.XmlReader;
+import com.wizered67.game.GameManager;
 import com.wizered67.game.conversations.ConversationController;
 import com.wizered67.game.conversations.commands.ConversationCommand;
 import com.wizered67.game.conversations.commands.impl.scripting.VariableConditionCommand;
@@ -34,7 +35,7 @@ public enum VariableConditionCommandFactory implements ConversationCommandFactor
                     try {
                         elseCommands.add(loader.getCommand(elseC));
                     } catch (ConversationParsingException e) {
-                        e.printStackTrace();
+                        GameManager.error("Failed to parse else-branch command in variable condition.", e);
                     }
                 }
             } else {
@@ -42,7 +43,7 @@ public enum VariableConditionCommandFactory implements ConversationCommandFactor
                     ConversationCommand command = loader.getCommand(c);
                     commands.add(command);
                 } catch (ConversationParsingException e) {
-                    e.printStackTrace();
+                    GameManager.error("Failed to parse command in variable condition.", e);
                 }
             }
         }
