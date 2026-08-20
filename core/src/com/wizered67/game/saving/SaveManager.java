@@ -9,6 +9,7 @@ import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.esotericsoftware.minlog.Log;
+import com.wizered67.game.Constants;
 import com.wizered67.game.assets.Assets;
 import com.wizered67.game.conversations.Conversation;
 import com.wizered67.game.conversations.ConversationController;
@@ -33,6 +34,8 @@ import org.objenesis.strategy.StdInstantiatorStrategy;
 import java.util.Map;
 import java.util.zip.DeflaterOutputStream;
 import java.util.zip.InflaterInputStream;
+
+import static com.esotericsoftware.minlog.Log.*;
 
 /**
  * Saves and loads serialized data using Kryo.
@@ -59,7 +62,7 @@ public class SaveManager {
         kryo.addDefaultSerializer(OrthographicCamera.class, OrthographicCameraSerializer.class);
 
         kryo.setReferences(true);
-        Log.set(Log.LEVEL_TRACE);
+        if (Constants.DEBUG) { set(LEVEL_TRACE); }
         kryo.register(Color.class, new Serializer<Color>() {
             public Color read (Kryo kryo, Input input, Class<Color> type) {
                 Color color = new Color();
